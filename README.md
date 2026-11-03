@@ -1,4 +1,4 @@
-# Blazon IGA — Referência de Design
+# Blazon IGA
 
 Estudo de design de governança de identidades (IGA) baseado na **documentação pública do Blazon**, aplicado a uma empresa **fictícia** (Acme Fictícia S.A.).
 

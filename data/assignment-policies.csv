@@ -1,0 +1,7 @@
+policy_id,policy_name,eligibility_mode,combination,conditions,roles_granted,observation
+PA-001,Base corporativa,PADRAO,Todas,employeeType not equal Terceiro,ROL-CORP-BASE,Nunca habilitar sem elegibilidade
+PA-010,Base Financeiro,PADRAO,Todas,department equal Financeiro; employeeType not equal Terceiro,ROL-FIN-BASE,
+PA-020,Base RH,PADRAO,Todas,department equal RH; employeeType not equal Terceiro,ROL-RH-BASE,
+PA-030,Base TI,PADRAO,Todas,department equal TI; employeeType not equal Terceiro,ROL-TI-BASE,
+PA-040,Base Comercial,PADRAO,Todas,department equal Comercial; employeeType not equal Terceiro,ROL-COM-BASE,Exemplo de versão avançada em BeanShell no documento 03
+PA-050,Base Jurídico,PADRAO,Todas,department equal Jurídico; employeeType not equal Terceiro,ROL-JUR-BASE,

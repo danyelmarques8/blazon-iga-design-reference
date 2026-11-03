@@ -1,0 +1,16 @@
+role_id,system,entitlement,privilege_level
+ROL-CORP-BASE,Intranet-Ficticia,Leitor,Padrão
+ROL-CORP-BASE,E-mail-Ficticio,Caixa de e-mail,Padrão
+ROL-FIN-BASE,ERP-Ficticio,FIN_CONSULTA,Padrão
+ROL-FIN-LANCADOR,ERP-Ficticio,FIN_LANCAR_PAGAMENTO,Elevado
+ROL-FIN-APROVADOR,ERP-Ficticio,FIN_APROVAR_PAGAMENTO,Elevado
+ROL-RH-BASE,RH-Ficticio,RH_CONSULTA,Padrão
+ROL-RH-FOLHA-EDITOR,RH-Ficticio,RH_FOLHA_EDITAR,Elevado
+ROL-RH-FOLHA-APROVADOR,RH-Ficticio,RH_FOLHA_APROVAR,Elevado
+ROL-TI-BASE,ITSM-Ficticio,Atendente,Padrão
+ROL-TI-ADMIN-ERP,ERP-Ficticio,ERP_ADMIN,Privilegiado
+ROL-TI-ADMIN-AD,AD-Ficticio,Domain Admins (fictício),Privilegiado
+ROL-COM-BASE,CRM-Ficticio,COM_CARTEIRA,Padrão
+ROL-COM-CADASTRO-CLIENTE,CRM-Ficticio,COM_CADASTRO_CLIENTE,Elevado
+ROL-JUR-BASE,Contratos-Ficticio,JUR_LEITURA,Padrão
+ROL-JUR-CONTRATOS-ADMIN,Contratos-Ficticio,JUR_ADMIN,Elevado

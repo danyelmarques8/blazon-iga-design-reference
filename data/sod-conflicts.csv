@@ -1,0 +1,6 @@
+conflict_id,role_a,role_b,rule,severity,mitigation
+SOD-01,ROL-FIN-LANCADOR,ROL-FIN-APROVADOR,A mesma pessoa lança e aprova um pagamento,Crítica,Bloquear na solicitação do segundo papel
+SOD-02,ROL-RH-FOLHA-EDITOR,ROL-RH-FOLHA-APROVADOR,A mesma pessoa edita e aprova a folha,Crítica,Bloquear na solicitação do segundo papel
+SOD-03,ROL-TI-ADMIN-ERP,ROL-FIN-APROVADOR,Administrador do sistema também aprova transações,Alta,Bloquear ou exigir controle compensatório aprovado
+SOD-04,ROL-TI-ADMIN-ERP,ROL-FIN-LANCADOR,Administrador do sistema também lança transações,Alta,Bloquear ou exigir controle compensatório aprovado
+SOD-05,ROL-TI-ADMIN-AD,ROL-TI-ADMIN-ERP,Concentração de dois privilégios críticos na mesma pessoa,Média,Exigir justificativa e revisão trimestral

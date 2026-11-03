@@ -1,0 +1,15 @@
+role_id,role_name,department,description,assignment_type,risk
+ROL-CORP-BASE,Acesso corporativo básico,Todos,E-mail e intranet,AUTOMATICA,Baixo
+ROL-FIN-BASE,Financeiro - Base,Financeiro,Consulta ao ERP financeiro,AUTOMATICA,Médio
+ROL-FIN-LANCADOR,Financeiro - Lançador de pagamentos,Financeiro,Lançar pagamentos no ERP,SOLICITACAO,Alto
+ROL-FIN-APROVADOR,Financeiro - Aprovador de pagamentos,Financeiro,Aprovar pagamentos no ERP,SOLICITACAO,Alto
+ROL-RH-BASE,RH - Base,RH,Consulta ao cadastro de colaboradores,AUTOMATICA,Médio
+ROL-RH-FOLHA-EDITOR,RH - Editor de folha,RH,Editar dados da folha de pagamento,SOLICITACAO,Alto
+ROL-RH-FOLHA-APROVADOR,RH - Aprovador de folha,RH,Aprovar fechamento da folha,SOLICITACAO,Alto
+ROL-TI-BASE,TI - Base,TI,Abertura e atendimento de chamados,AUTOMATICA,Médio
+ROL-TI-ADMIN-ERP,TI - Administrador do ERP,TI,Administração técnica do ERP,SOLICITACAO,Crítico
+ROL-TI-ADMIN-AD,TI - Administrador do AD,TI,Administração do Active Directory,SOLICITACAO,Crítico
+ROL-COM-BASE,Comercial - Base,Comercial,Consulta e edição da própria carteira no CRM,AUTOMATICA,Médio
+ROL-COM-CADASTRO-CLIENTE,Comercial - Cadastro de clientes,Comercial,Criar e alterar cadastro de clientes,SOLICITACAO,Médio
+ROL-JUR-BASE,Jurídico - Base,Jurídico,Leitura do repositório de contratos,AUTOMATICA,Médio
+ROL-JUR-CONTRATOS-ADMIN,Jurídico - Administrador de contratos,Jurídico,Incluir e excluir contratos no repositório,SOLICITACAO,Alto

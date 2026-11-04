@@ -1,12 +1,12 @@
 # 03 — RBAC com atribuição automática por unidade organizacional
 
-## Fonte de verdade e ciclo de vida
+## Fonte autoritativa e ciclo de vida
 
 O ponto de partida é o **ERP/RH**, que é a fonte autoritativa dos dados do colaborador. O IGA consome esses dados e age a partir deles:
 
 1. O RH cadastra o colaborador no ERP, com departamento, tipo de vínculo e demais atributos.
 2. O IGA recebe o cadastro pela API, incluindo os campos de departamento e organização, e cria o usuário.
-3. O IGA cria a conta no **Active Directory já na OU do departamento**, sem ninguém mexer manualmente no AD.
+3. 3. O IGA cria a conta no **Active Directory já na OU do departamento**, sem ninguém mexer manualmente no AD. Já vi esse fluxo funcionando na prática.
 4. As políticas de atribuição concedem os papéis base automaticamente.
 5. Papéis sensíveis entram por solicitação, com aprovação e checagem de SoD.
 
@@ -79,7 +79,7 @@ return false;
 
 ## Cenário de Mover: Financeiro para Comercial
 
-1. O RH altera o departamento do colaborador **no ERP**, que é a fonte de verdade.
+1. O RH altera o departamento do colaborador **no ERP**, que é a fonte autoritativa.
 2. O IGA recebe a mudança e atualiza o atributo do usuário.
 3. As políticas são reavaliadas: a PA-010 deixa de valer e o papel `ROL-FIN-BASE` é revogado. A PA-040 passa a valer e o papel `ROL-COM-BASE` é concedido. Testei que a conta também é movida automaticamente para a OU do novo departamento no AD.
 4. Na minha experiência, esse ciclo leva cerca de 2 dias, e o tempo varia conforme a configuração e o ambiente. A concessão dos novos acessos e a revogação dos antigos acontecem em sequência, sem deixar o colaborador sem nenhum acesso no meio da troca.
@@ -87,7 +87,7 @@ return false;
 
 O passo 5 é o risco real de Mover: o acúmulo vem dos papéis manuais.
 
-**Por que o atributo precisa vir do ERP.** Se o departamento fosse alterado direto no AD ou no IGA, haveria duas fontes de verdade e a mudança dependeria de alguém lembrar de fazer. Com o RH alterando no ERP, a mudança de papéis acontece como consequência da mudança de cargo, e o registro do RH fica como evidência da origem.
+**Por que o atributo precisa vir do ERP.** Se o departamento fosse alterado direto no AD ou no IGA, haveria duas fonte autoritativa e a mudança dependeria de alguém lembrar de fazer. Com o RH alterando no ERP, a mudança de papéis acontece como consequência da mudança de cargo, e o registro do RH fica como evidência da origem.
 
 ## Impacto para UAR e SOX
 

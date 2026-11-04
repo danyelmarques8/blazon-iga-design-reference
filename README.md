@@ -34,4 +34,5 @@ Texto e estrutura deste repositório são originais. Não reproduzo a documenta�
 
 ## Apoio de IA
 
-Usei IA como apoio para estruturar o material. O conteúdo foi conferido contra a documentação pública acima.
+## Como fiz
+Trabalhei com o Blazon e quis registrar como eu estruturaria essas três frentes do zero, só com a documentação pública e dados fictícios. Usei IA como apoio para organizar o material, e revisei tudo contra a documentação.

@@ -17,7 +17,7 @@ Os dados de apoio estão na pasta [`data/`](data/) em CSV (catálogo de papéis,
 
 ## Cenário fictício
 
-A Acme Fictícia S.A. tem 5 departamentos (Financeiro, RH, TI, Comercial e Jurídico), um Active Directory organizado por OUs e sistemas fictícios (ERP, CRM, sistema de RH e repositório de contratos). O ERP/RH é a fonte de verdade dos colaboradores. Parte dos sistemas não usa o Entra ID, por isso a troca de senha precisa de um fluxo próprio.
+A Acme Fictícia S.A. tem 5 departamentos (Financeiro, RH, TI, Comercial e Jurídico), um Active Directory organizado por OUs e sistemas fictícios (ERP, CRM, sistema de RH e repositório de contratos). O ERP/RH é a fonte autoritativa dos dados do colaborador. Parte dos sistemas não usa o Entra ID, por isso a troca de senha precisa de um fluxo próprio.
 
 ## Principais decisões de design
 

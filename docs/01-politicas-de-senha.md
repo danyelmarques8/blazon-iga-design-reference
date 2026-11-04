@@ -54,6 +54,18 @@ Pontos de cuidado:
 - O dicionário deve ser revisado a cada 6 meses, junto com a política.
 - A lista é um ponto de partida. Em projeto real, ela se alimenta de bases de senhas vazadas e de termos específicos do cliente.
 
+## Limite da verificação de dados pessoais
+
+A regra "sem dados pessoais" compara a senha com os dados do usuário que chegam ao IGA pela API. Testei que, quando a senha contém um desses dados, o sistema bloqueia. Mas o que **não está no cadastro** não é barrado: o nome do pet, por exemplo, passa.
+
+O que isso muda no desenho:
+
+- **A qualidade do feed importa.** Quanto mais completo e correto o cadastro enviado pelo RH/ERP, mais a regra protege. Mas só devem ir os dados necessários para a finalidade, em respeito à minimização da LGPD.
+- **O dicionário cobre o que o cadastro não cobre.** Termos que a empresa conhece e o cadastro não tem (produtos, nomes dos sistemas, times) entram no DIC-GERAL.
+- **Orientação ao usuário continua necessária.** Nomes de pessoas próximas, de animais e datas pessoais não têm como entrar em nenhuma lista. A regra de tamanho mínimo e a orientação no momento da troca ajudam nesses casos.
+
+É o mesmo problema das perguntas secretas (documento 02), onde o nome do animal de estimação aparece como resposta de alto risco: dado que só o usuário conhece é difícil de proteger por regra técnica.
+
 ## Operação e governança
 
 - A plataforma tem alertas para política de senha fraca ou média e um lembrete de revisão periódica das políticas a cada 6 meses. Vale ligar esses alertas e registrar a revisão como evidência de controle.
@@ -61,7 +73,6 @@ Pontos de cuidado:
 
 ## Pontos a validar numa instância real
 
-- Quais atributos entram na verificação de "dados pessoais".
 - Se o dicionário aceita importação em lote.
 - Uma ou várias listas por política, correspondência exata ou parcial e diferença entre maiúsculas e minúsculas.
 - Se a plataforma trata variações com símbolos (`S3nh@`).

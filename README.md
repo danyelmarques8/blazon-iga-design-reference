@@ -32,7 +32,5 @@ Documentação pública do Blazon: https://docs.blazon.im
 
 Texto e estrutura deste repositório são originais. Não reproduzo a documentação do fabricante nem imagens dela.
 
-## Apoio de IA
-
 ## Como fiz
 Trabalhei com o Blazon e quis registrar como eu estruturaria essas três frentes do zero, só com a documentação pública e dados fictícios. Usei IA como apoio para organizar o material, e revisei tudo contra a documentação.

@@ -24,6 +24,8 @@ A ordem importa: da mais restritiva para a mais geral.
 
 Detalhes em [`data/password-reset-policies.csv`](../data/password-reset-policies.csv).
 
+A elegibilidade das políticas de troca de senha também enxerga **departamento** e **organização**, que chegam pela API. Dá para usar isso para endurecer o fluxo em áreas críticas, por exemplo exigir 3 perguntas e o aplicativo autenticador para quem é do Financeiro ou da TI, mesmo sem papel de administrador.
+
 **Por que sem SMS para privilegiados:** SMS é vulnerável a troca de chip (SIM swap). Para contas de alto impacto, o aplicativo autenticador é mais seguro.
 
 ## O que testei na plataforma

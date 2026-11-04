@@ -1,6 +1,6 @@
 # Blazon IGA
 
-Estudo de design de governança de identidades (IGA) baseado na **documentação pública do Blazon**, aplicado a uma empresa **fictícia** (Acme Fictícia S.A.).
+Estudo governança de identidades (IGA) baseado na **documentação pública do Blazon**, aplicado a uma empresa **fictícia** (Acme Fictícia S.A.).
 
 > **Aviso:** todos os dados são fictícios. Este material é um estudo de design, **não** uma configuração testada em produção, e não tem vínculo com a Blazon. Os nomes de produto pertencem aos seus donos.
 

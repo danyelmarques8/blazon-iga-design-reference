@@ -6,7 +6,7 @@ O ponto de partida é o **ERP/RH**, que é a fonte autoritativa dos dados do col
 
 1. O RH cadastra o colaborador no ERP, com departamento, tipo de vínculo e demais atributos.
 2. O IGA recebe o cadastro pela API, incluindo os campos de departamento e organização, e cria o usuário.
-3. 3. O IGA cria a conta no **Active Directory já na OU do departamento**, sem ninguém mexer manualmente no AD. Já vi esse fluxo funcionando na prática.
+3. O IGA cria a conta no **Active Directory já na OU do departamento**, sem ninguém mexer manualmente no AD. Já vi esse fluxo funcionando na prática.
 4. As políticas de atribuição concedem os papéis base automaticamente.
 5. Papéis sensíveis entram por solicitação, com aprovação e checagem de SoD.
 

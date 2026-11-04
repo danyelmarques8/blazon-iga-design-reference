@@ -1,5 +1,17 @@
 # 03 — RBAC com atribuição automática por unidade organizacional
 
+## Fonte de verdade e ciclo de vida
+
+O ponto de partida é o **ERP/RH**, que é a fonte autoritativa dos dados do colaborador. O IGA consome esses dados e age a partir deles:
+
+1. O RH cadastra o colaborador no ERP, com departamento, tipo de vínculo e demais atributos.
+2. O IGA recebe o cadastro e cria o usuário.
+3. O IGA cria a conta no **Active Directory já na OU do departamento**, sem ninguém mexer manualmente no AD.
+4. As políticas de atribuição concedem os papéis base automaticamente.
+5. Papéis sensíveis entram por solicitação, com aprovação e checagem de SoD.
+
+Quando o RH altera um dado no ERP, o IGA reavalia o usuário e os papéis acompanham a mudança. Ninguém precisa pedir ou revogar acesso na mão.
+
 ## Modelo de camadas
 
 | Camada | O que é | Como entra |
@@ -10,21 +22,19 @@
 
 Regra de ouro: **automático só para o que é básico**. Papel sensível concedido por regra automática é risco de SoD e dificulta a revisão.
 
-## De OU do AD para unidade organizacional
+## Unidade organizacional, departamento e OU do AD
 
 O Blazon trabalha com unidades organizacionais de quatro tipos (centro de custo, departamento, grupo de trabalho e organização). Os usuários são ligados a elas pelos atributos de centro de custo, departamento e organização.
 
-Proposta: cada OU do AD que representa uma área vira um **departamento** no IGA, preenchido por mapeamento na sincronização.
+Proposta: o **departamento vem do ERP** e define dois destinos, a unidade organizacional no IGA e a OU onde o IGA cria a conta no AD.
 
-| OU no AD (fictícia) | Departamento no IGA |
-|---|---|
-| OU=Financeiro,OU=Acme | Financeiro |
-| OU=RH,OU=Acme | RH |
-| OU=TI,OU=Acme | TI |
-| OU=Comercial,OU=Acme | Comercial |
-| OU=Juridico,OU=Acme | Jurídico |
-
-> Premissa de design: o departamento chega ao IGA pela sincronização do AD. Precisa ser confirmado numa instância real (ver documento 04).
+| Departamento (origem: ERP) | Unidade organizacional no IGA | OU no AD (fictícia) |
+|---|---|---|
+| Financeiro | Financeiro | OU=Financeiro,OU=Acme |
+| RH | RH | OU=RH,OU=Acme |
+| TI | TI | OU=TI,OU=Acme |
+| Comercial | Comercial | OU=Comercial,OU=Acme |
+| Jurídico | Jurídico | OU=Juridico,OU=Acme |
 
 ## Convenção de nomes
 
@@ -67,13 +77,15 @@ return false;
 
 ## Cenário de Mover: Financeiro para Comercial
 
-1. O RH altera o departamento do colaborador.
-2. O atributo muda no IGA e as políticas são reavaliadas continuamente.
-3. A política PA-010 deixa de valer: o papel `ROL-FIN-BASE` é revogado.
-4. A política PA-040 passa a valer: o papel `ROL-COM-BASE` é concedido.
+1. O RH altera o departamento do colaborador **no ERP**, que é a fonte de verdade.
+2. O IGA recebe a mudança e atualiza o atributo do usuário.
+3. As políticas são reavaliadas: a PA-010 deixa de valer e o papel `ROL-FIN-BASE` é revogado. A PA-040 passa a valer e o papel `ROL-COM-BASE` é concedido.
+4. Na minha experiência, esse ciclo leva cerca de 2 dias, e o tempo varia conforme a configuração e o ambiente. A concessão dos novos acessos e a revogação dos antigos acontecem em sequência, sem deixar o colaborador sem nenhum acesso no meio da troca.
 5. **Papéis concedidos por solicitação (ex.: `ROL-FIN-APROVADOR`) não mudam sozinhos.** Ficam ativos até alguém revisar.
 
 O passo 5 é o risco real de Mover: o acúmulo vem dos papéis manuais.
+
+**Por que o atributo precisa vir do ERP.** Se o departamento fosse alterado direto no AD ou no IGA, haveria duas fontes de verdade e a mudança dependeria de alguém lembrar de fazer. Com o RH alterando no ERP, a mudança de papéis acontece como consequência da mudança de cargo, e o registro do RH fica como evidência da origem.
 
 ## Impacto para UAR e SOX
 
@@ -82,9 +94,9 @@ Pela documentação, membros de papéis gerenciados por política **não entram 
 - Campanhas de UAR focam nos papéis concedidos **por solicitação**, que é onde mora o risco.
 - A **política de atribuição em si** precisa ser revisada periodicamente (quem aprovou, qual a elegibilidade, quais papéis concede). Essa revisão vira a evidência de controle para os papéis automáticos.
 - Conflitos de SoD ficam em [`data/sod-conflicts.csv`](../data/sod-conflicts.csv) e devem ser checados no momento da solicitação do papel sensível.
+- A qualidade do dado no ERP vira controle de acesso: departamento errado no cadastro gera papel errado. Vale um controle de revisão dos cadastros pelo RH.
 
 ## Pontos a validar numa instância real
 
 - Quais atributos de usuário a elegibilidade enxerga, incluindo os campos de departamento e organização.
-- Como o Mover é tratado quando o atributo muda por sincronização com o AD.
-- Quanto tempo leva a reavaliação contínua após uma mudança de atributo.
+- Se, quando o departamento muda, a conta é movida automaticamente para a nova OU no AD.

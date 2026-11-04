@@ -25,7 +25,7 @@ Um estudo de **design** baseado na documentação pública do Blazon e em compor
 |---|---|---|---|
 | 1 | Perguntas secretas combinadas com token (e-mail, SMS ou aplicativo autenticador) na mesma política | 02 | Testado |
 | 2 | Usuário sem e-mail pessoal ou telefone cadastrado: o token não é enviado e a troca de senha não é autorizada | 02 | Testado |
-| 3 | Criação do usuário no AD pelo IGA, já na OU do departamento | 03 | Confirmado |
+| 3 | Criação do usuário no AD pelo IGA, já na OU do departamento | 03 | Testado |
 | 4 | Tempo entre a mudança de atributo no ERP e a revogação/concessão dos papéis: cerca de 2 dias no que observei, variando conforme a configuração | 03 | Observado |
 | 5 | Campo de expressão da pergunta secreta: aceita expressão regular para validar o formato da resposta? | 02 | A validar |
 | 6 | Elegibilidade enxerga os campos de departamento e organização enviados pela API, tanto nas políticas de atribuição de papéis quanto nas políticas de troca de senha | 02 e 03 | Confirmado |

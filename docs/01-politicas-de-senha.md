@@ -17,22 +17,42 @@ Os valores abaixo são **ilustrativos**. Em um projeto real, saem da política c
 | Caracteres especiais | Não exigidos | Exigidos | Exigidos |
 | Sem sequências (abc, 123) | Sim | Sim | Sim |
 | Sem dados pessoais | Sim | Sim | Não se aplica |
-| Dicionário | Senhas comuns em português | Senhas comuns + termos da empresa | Não necessário (senha gerada) |
+| Dicionário | DIC-GERAL | DIC-PRIVILEGIADO (inclui o DIC-GERAL) | Não necessário (senha gerada) |
 | Histórico | 5 últimas | 12 últimas | 3 últimas |
-| Expiração | 90 dias | 60 dias | 365 dias |
+| Expiração | 30 dias | 30 dias | 90 dias |
 | Notificações de expiração | Todas as opções | Todas as opções | Todas as opções |
 
 Os mesmos valores estão em [`data/password-policies.csv`](../data/password-policies.csv).
 
 ## Registro de decisões
 
-**D1 — Expiração periódica.** Auditorias de TI costumam testar os parâmetros de senha, e 90 dias é um valor frequente em políticas corporativas. Por outro lado, o NIST SP 800-63B recomenda não impor trocas periódicas sem indício de comprometimento. *Decisão:* manter expiração por exigência de conformidade e registrar o trade-off para reavaliação.
+**D1 — Expiração periódica.** A ISO 27001 (controle 5.17) exige um processo formal de gestão das informações de autenticação, mas não define um intervalo de troca. Já o NIST SP 800-63B recomenda não impor trocas periódicas sem indício de comprometimento. *Decisão:* a Acme Fictícia adota 30 dias por política interna, em linha com seu apetite de risco. O trade-off (rotação frequente pode induzir senhas previsíveis) fica registrado para reavaliação, com a mitigação de tamanho mínimo de 12 caracteres e dicionário de palavras proibidas.
 
-**D2 — Tamanho antes de complexidade.** Na política padrão, não exigi caractere especial para evitar senhas previsíveis do tipo `Senha@123`. O tamanho de 12 e o dicionário compensam.
+**D2 — Tamanho e dicionário antes de complexidade.** Na política padrão, não exigi caractere especial, porque a exigência tende a gerar padrões previsíveis como `Senha@123`. Em vez disso, combinei tamanho mínimo de 12 com um dicionário de palavras proibidas (senhas comuns, termos da empresa, padrões sazonais e de teclado), que bloqueia justamente as escolhas que a regra de complexidade deixaria passar. O dicionário é revisado a cada 6 meses.
 
-**D3 — Contas de aplicação.** A senha é gerada pela própria política e não digitada por pessoa, então o tamanho pode ser alto. A expiração longa só faz sentido se existir rotação controlada (cofre de senhas ou processo equivalente).
+**D3 — Contas de aplicação.** A senha é gerada pela própria política e não digitada por pessoa, então o tamanho pode ser alto. A expiração de 90 dias, maior que a dos usuários, só faz sentido se existir rotação controlada (cofre de senhas ou processo equivalente).
 
 **D4 — Política padrão obrigatória.** Defini a POL-PADRAO como padrão. Pela documentação, a política padrão não pode ser removida enquanto estiver nessa condição, então qualquer troca de padrão exige antes designar outra.
+
+## Dicionários de palavras proibidas
+
+Pelo que a documentação de políticas descreve, cada política seleciona um dicionário já cadastrado. Por isso o DIC-PRIVILEGIADO é um superconjunto do DIC-GERAL, em vez de dois dicionários somados.
+
+| Categoria | Exemplos fictícios | Dicionário |
+|---|---|---|
+| Senhas comuns | senha, mudar123, brasil, qwerty, euteamo | DIC-GERAL |
+| Nomes próprios e times | Lucas, Pedro, flamengo, corinthians | DIC-GERAL |
+| Termos da empresa | acme, acmeficticia, nomes dos sistemas (erp, crm) | DIC-GERAL |
+| Padrões sazonais | meses do ano, verao, inverno, anos recentes | DIC-GERAL |
+| Termos técnicos | admin, root, domain, servidor, suporte, teste, temp | DIC-PRIVILEGIADO |
+
+Nomes próprios entram porque um levantamento da NordPass, divulgado pela imprensa brasileira, apontou nomes como Lucas e Pedro entre os mais encontrados em senhas vazadas no Brasil em 2023 ([fonte](https://www.agazeta.com.br/comentaristas/cbn-e-a-tecnologia/erros-comuns-de-senha-que-os-hackers-adoram-explorar-1223)).
+
+Pontos de cuidado:
+
+- Substituições de letras por símbolos (`S3nh@`) só são barradas se a plataforma normalizar a senha ou se as variações mais comuns forem listadas.
+- O dicionário deve ser revisado a cada 6 meses, junto com a política.
+- A lista é um ponto de partida. Em projeto real, ela se alimenta de bases de senhas vazadas e de termos específicos do cliente.
 
 ## Operação e governança
 
@@ -43,4 +63,6 @@ Os mesmos valores estão em [`data/password-policies.csv`](../data/password-poli
 
 - Quais atributos entram na verificação de "dados pessoais".
 - Se o dicionário aceita importação em lote.
+- Uma ou várias listas por política, correspondência exata ou parcial e diferença entre maiúsculas e minúsculas.
+- Se a plataforma trata variações com símbolos (`S3nh@`).
 - Como a política de senha interage com a política de troca de senha (documento 02).

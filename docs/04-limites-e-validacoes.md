@@ -28,11 +28,12 @@ Um estudo de **design** baseado na documentação pública do Blazon e em compor
 | 3 | Criação do usuário no AD pelo IGA, já na OU do departamento | 03 | Confirmado |
 | 4 | Tempo entre a mudança de atributo no ERP e a revogação/concessão dos papéis: cerca de 2 dias no que observei, variando conforme a configuração | 03 | Observado |
 | 5 | Campo de expressão da pergunta secreta: aceita expressão regular para validar o formato da resposta? | 02 | A validar |
-| 6 | Atributos visíveis na elegibilidade das políticas de atribuição, incluindo departamento e organização | 03 | A validar |
-| 7 | Conta movida automaticamente para a nova OU quando o departamento muda | 03 | A validar |
-| 8 | Atributos usados na verificação de "sem dados pessoais" e importação de dicionário em lote | 01 | A validar |
+| 6 | Elegibilidade enxerga os campos de departamento e organização enviados pela API, tanto nas políticas de atribuição de papéis quanto nas políticas de troca de senha | 02 e 03 | Confirmado |
+| 7 | Conta movida automaticamente para a nova OU quando o departamento muda | 03 | Testado |
+| 8 | Verificação de "sem dados pessoais": o sistema compara a senha com os dados pessoais do cadastro enviados pela API e bloqueia o uso. O que não está no cadastro (ex.: nome do pet) não é barrado | 01 | Testado |
 | 9 | Dicionário: uma ou várias listas por política, correspondência exata ou parcial, diferença entre maiúsculas e minúsculas, variações com símbolos | 01 | A validar |
 | 10 | Interação entre a política de senha e a política de troca de senha | 01 e 02 | A validar |
+| 11 | Importação de dicionário de palavras em lote | 01 | A validar |
 
 ## Evolução prevista
 

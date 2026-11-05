@@ -25,7 +25,7 @@ A Acme Fictícia S.A. tem 5 departamentos (Financeiro, RH, TI, Comercial e Jurí
 2. **Tamanho e dicionário antes de complexidade.** Na política padrão, não exigi caractere especial. Combinei tamanho mínimo com um dicionário de palavras proibidas, que bloqueia as senhas previsíveis que a regra de complexidade deixaria passar.
 3. **A verificação de dados pessoais tem limite.** Ela só enxerga o que o cadastro enviou ao IGA, então o que não está lá (como o nome do pet) não é barrado. Esse ponto está documentado no projeto.
 4. **Perguntas secretas nunca sozinhas.** São o fator mais fraco, então entram sempre combinadas com token e com bloqueios de segurança. Como o token depende de e-mail pessoal ou telefone cadastrado, o cadastro desses dados vira pré-requisito de segurança.
-5. **O ERP é a fonte de verdade.** O RH altera o cadastro, o IGA cria a conta no AD já na OU certa e os papéis acompanham a mudança, sem pedido manual.
+5. **O ERP é a fonte autoritativa.** O RH altera o cadastro, o IGA cria a conta no AD já na OU certa e os papéis acompanham a mudança, sem pedido manual.
 6. **Atribuição automática só para acessos básicos.** Papéis sensíveis entram por solicitação, com aprovação e verificação de SoD.
 7. **A política de atribuição também precisa de revisão.** Membros de papéis gerenciados por política não entram nas campanhas de certificação, então a revisão passa a ser da política em si.
 

@@ -1,4 +1,4 @@
-# 02 — Troca de senha em autosserviço (contas fora do Entra ID)
+# 02 — Troca de senha em autosserviço
 
 ## Contexto
 
@@ -58,23 +58,27 @@ O bloqueio por origem para username inválido ajuda contra enumeração de usuá
 
 ## Perguntas secretas: como desenhar
 
-Perguntas secretas são o fator mais fraco do fluxo. Muitas respostas são descobertas em redes sociais ou adivinhadas. Por isso:
+Num ambiente corporativo, as respostas precisam existir em uma base que a empresa controla. Por isso as perguntas partem de **dados do cadastro corporativo**, que chegam ao IGA pelo ERP/RH, e não de memórias pessoais (apelido de infância, primeiro filme), que a empresa não tem.
 
-- Nunca usar sozinhas, sempre combinadas com token.
-- Evitar perguntas com resposta pública ou previsível (nome da mãe, cidade de nascimento, nome do pet).
-- Preferir perguntas cuja resposta só o usuário conhece e que não mudam com o tempo.
+O ponto fraco é outro: dados cadastrais são conhecidos por colegas, gestor e RH. Por isso:
 
-Banco de perguntas de exemplo:
+- Nunca usar perguntas sozinhas, sempre combinadas com token.
+- Preferir dados funcionais pouco visíveis (matrícula, data de admissão completa, código do centro de custo) a dados que estão no organograma (gestor, departamento, cargo).
+- Evitar dados pessoais sensíveis (CPF, data de nascimento) sempre que possível. Quanto mais dado pessoal no cadastro usado como fator, maior o impacto de um vazamento da base, e a LGPD pede só o necessário.
+- Nos perfis privilegiados, usar apenas as perguntas de menor exposição.
 
-| Pergunta | Risco de a resposta ser descoberta |
-|---|---|
-| Qual era o apelido que só a sua família usava na infância? | Baixo |
-| Qual foi o primeiro filme que você assistiu no cinema? | Médio |
-| Qual o nome do primeiro livro que você leu até o fim? | Médio |
-| Qual o nome do seu primeiro chefe? | Alto (pode estar no LinkedIn) |
-| Qual o nome do seu animal de estimação? | Alto (pode estar nas redes sociais) |
+Banco de perguntas de exemplo (todas respondidas com dados do cadastro corporativo):
 
-Recomendação: manter só as de risco baixo e médio no banco.
+| Pergunta | Quem pode saber a resposta | Exposição |
+|---|---|---|
+| Qual é o seu número de matrícula? | Usuário, RH, quem viu holerite ou crachá | Média |
+| Qual é a sua data de admissão (dia, mês e ano)? | Usuário, RH, colegas próximos | Média |
+| Qual é o código do seu centro de custo? | Usuário, RH, financeiro e gestor | Média |
+| Quais são os 3 últimos dígitos do seu CPF? | Usuário, RH e qualquer base vazada | Média (dado pessoal) |
+| Qual é o nome do seu gestor direto? | Toda a área | Alta |
+| Qual é o seu departamento? | Qualquer colega | Alta |
+
+Recomendação: usar matrícula, data de admissão e código do centro de custo. Gestor, departamento e cargo não servem como fator, porque qualquer colega sabe a resposta. O CPF só entra se a empresa já usa esse dado com outra finalidade.
 
 ## Monitoramento
 
